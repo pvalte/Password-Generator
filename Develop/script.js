@@ -19,6 +19,7 @@ var specialCharacters = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 var getValidCharacters = function() {
   var validCharacters = "";
   characterTypeResponse = window.prompt("Password Criteria: Please choose which character types to include in the password: LOWERCASE, UPPERCASE, NUMERIC, and/or SPECIAL CHARACTERS");
+  characterTypeResponse = characterTypeResponse.toLowerCase();
 
   if (characterTypeResponse.includes('lowercase')) {
     validCharacters = validCharacters + lowerCase;
@@ -35,7 +36,6 @@ var getValidCharacters = function() {
   if (!validCharacters) {
     return getValidCharacters();
   }
-
   return validCharacters;
 };
 
@@ -62,6 +62,7 @@ var generatePassword = function() {
         return generatePassword();
   }
 
+  //Create password to fit criteria
   var generatedPassword = "";
   for (i = 0; i < passwordLength; i++) {
     var randomCharacter = validCharacters[Math.floor(Math.random() * (validCharacters.length))];
@@ -69,7 +70,6 @@ var generatePassword = function() {
   }
   return generatedPassword;
 }
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
