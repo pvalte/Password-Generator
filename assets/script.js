@@ -1,7 +1,7 @@
 //Prompt for the length of the password, at least 8 characters and no more than 128 characters
 var getPasswordLength = function() {
   var passwordLength = 0;
-  while (!passwordLength || passwordLength < 8 || passwordLength > 124) {
+  while (!passwordLength || passwordLength < 8 || passwordLength > 128) {
     passwordLength = window.prompt("Password Criteria: Please choose a password length from 8 to 128 characters");
     passwordLength = parseInt(passwordLength);
   }
