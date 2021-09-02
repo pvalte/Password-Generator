@@ -1,4 +1,10 @@
 // Assignment code here
+//Constants
+var lowerCaseArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upperCaseArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var numericArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+var specialCharacterArray = ['!', '@', '#', '$', '%', '&', '*', '+', '_'];
+
 
 var getPasswordLength = function() {
   var passwordLength = 0;
@@ -20,23 +26,27 @@ var getValidCharacters = function() {
     }
   }
   if (characterTypeResponse.includes('lowercase')) {
-    validCharacters = validCharacters.concat(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']);
+    validCharacters = validCharacters.concat(lowerCaseArray);
   }
   if (characterTypeResponse.includes('uppercase')) {
-    validCharacters = validCharacters.concat(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']);
+    validCharacters = validCharacters.concat(upperCaseArray);
   }
   if (characterTypeResponse.includes('numeric')) {
-    validCharacters = validCharacters.concat(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']);
+    validCharacters = validCharacters.concat(numericArray);
   }
   if (characterTypeResponse.includes('special characters')) {
-    validCharacters = validCharacters.concat(['!', '@', '#', '$', '%', '&', '*', '+', '-']);
+    validCharacters = validCharacters.concat(specialCharacterArray);
   }
   return validCharacters;
 };
 
 var generatePassword = function() {
+  //defaults
+  var passwordLength = 8;
+  var validCharacters = lowerCaseArray;
+
   //present a series of prompts for password criteria
-  var passwordCriteria = window.prompt("Which criteria would you like to include in the password: Please enter one 1 for PASSWORD LENGTH, 2 for CHARACTER TYPE, or 3 for BOTH.");
+  var passwordCriteria = window.prompt("Which criteria would you like to include in the password: Please enter one 1 for PASSWORD LENGTH, 2 for CHARACTER TYPE, or 3 for BOTH.");  
 
   //Select which criteria to include in the password
   switch (parseInt(passwordCriteria)) {
@@ -60,6 +70,14 @@ var generatePassword = function() {
       default:
           return generatePassword();
   }
+
+  var password = "";
+  for (i = 0; i < passwordLength; i++) {
+    var randomCharacter = validCharacters[Math.floor(Math.random() * (validCharacters.length))];
+    console.log(randomCharacter);
+    password = password + randomCharacter;
+  }
+  return password;
 }
 
 
